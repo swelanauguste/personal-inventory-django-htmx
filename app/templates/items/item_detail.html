@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+
+{% block content %}
+<div class="container py-5">
+    <h1>{{object}}</h1>
+    <hr>
+    <div class="container">
+        <p>Name: {{object.name}}</p>
+        <p>S/N: {{object.uid}}</p>
+        <p>Valued: ${{object.value|intcomma}}</p>
+        <p>Tags: {{object.tags.all|join:", "}}</p>
+        <p>Description: {{object.description}}</p>
+        <p class="text-muted small">Updated: {{object.updated_at}}</p>
+    </div>
+    <br>
+    <a class="btn btn-outline-warning px-5 rounded-pill" href="{% url 'item-update' object.pk %}">Edit</a>
+</div>
+
+{% endblock content %}

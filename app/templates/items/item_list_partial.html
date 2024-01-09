@@ -1,0 +1,27 @@
+{% load humanize %}
+
+<div id="item-list"
+    class="col px-5">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in object_list %}
+            <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td><a href="{% url 'item-detail' item.pk %}">{{item.name}}
+                        {% if item.uid %}
+                        ({{item.uid}})
+                        {% endif %}
+                    </a></td>
+                <td>${{item.value|intcomma}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
